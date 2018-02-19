@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<link rel="stylesheet" href=
+"https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css" integrity=
+"sha512-dTfge/zgoMYpP7QbHy4gWMEGsbsdZeCXz7irItjcC3sPUFtf0kuFbDz/ixG7ArTxmDjLXDmezHubeNikyKGVyQ=="
+crossorigin="anonymous">
+</head>
+<style type="text/css">
+.red {
+		color :red;
+	}
+.black {
+	color:black;
+}
+
+
+</style>
+<body>
+<div class="container">
+<div class="row">
+<div>
+	<textarea name="tweettext" id="tweettext" class = "textlimits">
+		
+
+
+	</textarea>
+</div>	
+<div id="output" class="black">
+
+
+
+	 </div>
+	</div>
+ </div>
+ <script>
+ var output = document.getElementById('output');
+ var charCount = 10;//warning shows
+ var text_area_limit = 40;//text limit
+ var textlimits = document.querySelector(".textlimits");
+	/*
+	textlimits.addEventListener("change", textCounter);
+	textlimits.addEventListener("keyup", textCounter);
+	textlimits.addEventListener("keydown", textCounter);//event listeners, outside DOM
+
+	*/
+	textlimits.onkeyup = function(){textCounter();};
+	textlimits.onkeydown = function(){textCounter();};
+	textlimits.onchange = function(){textCounter();};//have to use "function() to access the DOM"
+
+ console.log(textlimits);
+
+function textCounter(){
+	//console.log('its working');
+	var field_value = document.getElementById('tweettext');
+	var count = field_value.value.length;
+	
+	if(count>text_area_limit) {
+		
+		field_value.value = field_value.value.substring(0,text_area_limit);
+	}
+
+
+	if((charCount - count) < 0 ){
+		output.classList.add("red");
+		output.classList.remove("black");//menja css klasu na jednom elementu classList
+		
+	}else{
+        output.classList.add("black");
+		output.classList.remove("red");
+	}
+
+	output.innerHTML = (charCount - count) + ' characters left';
+	}
+ </script>
+
+
+</body>
+</html>
